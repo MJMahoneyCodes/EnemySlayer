@@ -13,10 +13,40 @@
     </div>
     <script>
         //create a timer that runs every 10 seconds and increments totalEnemiesSlain by 1
-        var timerAmount = 10000; //so I can set how often this fires
-        setInterval(function(){
+        //var timerAmount = 10000; //so I can set how often this fires
+        //setInterval(function(){
+        //    $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
+        //}, timerAmount);
+        function Timer(fn, t) {
+            var timerObj = setInterval(fn, t);
+
+            this.stop = function() {
+                if (timerObj) {
+                    clearInterval(timerObj);
+                    timerObj = null;
+            }
+            return this;
+            }   
+
+            // start timer using current settings (if it's not already running)
+            this.start = function() {
+                if (!timerObj) {
+                    this.stop();
+                    timerObj = setInterval(fn, t);
+                }
+                return this;
+            }
+
+            // start with new or original interval, stop current interval
+            this.reset = function(newT = t) {
+                t = newT;
+                return this.stop().start();
+            }
+        }
+        var timer = new Timer(function() {
             $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
-        }, timerAmount);
+        }, 10000);
+
     </script>
 </body>
 </html>
