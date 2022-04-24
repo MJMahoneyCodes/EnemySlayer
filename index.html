@@ -17,6 +17,8 @@
         //setInterval(function(){
         //    $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
         //}, timerAmount);
+        
+        //https://stackoverflow.com/questions/8126466/how-do-i-reset-the-setinterval-timer
         function Timer(fn, t) {
             var timerObj = setInterval(fn, t);
 
@@ -46,6 +48,15 @@
         var timer = new Timer(function() {
             $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
         }, 10000);
+
+        // switch interval to 10 seconds
+        //timer.reset(10000);
+
+        // stop the timer
+        //timer.stop();
+
+        // start the timer
+        //timer.start();
 
     </script>
 </body>
