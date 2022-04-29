@@ -9,7 +9,7 @@
 </head>
 <body>
     <div>
-        <h1>Enemies Slain: <span id="totalEnemiesSlain" onchange="unlockChecker()">0</span></h1>
+        <h1>Enemies Slain: <span id="totalEnemiesSlain">0</span></h1>
     </div>
     <div>
         <button id="btnSlayEnemy" onclick="incrementEnemiesSlain()">Slay Enemy</button>        
@@ -77,6 +77,7 @@
         function incrementEnemiesSlain(){
             //increments totalEnemiesSlain by 1
             $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
+            unlockChecker();
         }
 
         var numberOfTimers = 0;
@@ -87,6 +88,7 @@
 
             var timer = new Timer(function() {
             $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
+            unlockChecker();
             }, 10000);
             
             numberOfTimers++;
@@ -95,6 +97,7 @@
         }
 
         function unlockChecker(){
+            console.log("unlockChecker has run");
             if(parseInt($("#totalEnemiesSlain").text()) >= 10){
                 $("#btnHireSlayer").removeAttr("disabled");
             }
