@@ -9,7 +9,7 @@
 </head>
 <body>
     <div>
-        <h1>Enemies Slain: <span id="totalEnemiesSlain">0</span></h1>
+        <h1>Enemies Slain: <span id="totalEnemiesSlain" onchange="unlockChecker()">0</span></h1>
     </div>
     <div>
         <button id="btnSlayEnemy" onclick="incrementEnemiesSlain()">Slay Enemy</button>        
@@ -81,6 +81,10 @@
 
         var numberOfTimers = 0;
         function createSlayerTimer(){
+            $("#btnHireSlayer").attr("disabled", "true");
+            
+            $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + -10);
+
             var timer = new Timer(function() {
             $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
             }, 10000);
@@ -88,6 +92,12 @@
             numberOfTimers++;
 
             $("#timerList").append('<li>Slayer ' + numberOfTimers + '</li>');
+        }
+
+        function unlockChecker(){
+            if(parseInt($("#totalEnemiesSlain").text()) >= 10){
+                $("#btnHireSlayer").removeAttr("disabled");
+            }
         }
     </script>
 </body>
