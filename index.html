@@ -87,7 +87,7 @@
         function createSlayerTimer(){
             $("#btnHireSlayer").attr("disabled", "true");
             
-            $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + -10);
+            $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) - 10);
 
             var timer = new Timer(function() {
             $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
@@ -111,6 +111,7 @@
         function increaseMonstersSlainPerClick(){
             monstersSlainPerClick++;
             $("#btnSharpenSword").attr("disabled", "true");
+            $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) - 100);
         }
         
     </script>
