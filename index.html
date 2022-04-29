@@ -11,6 +11,9 @@
     <div>
         <h1>Enemies Slain: <span id="totalEnemiesSlain">0</span></h1>
     </div>
+    <div>
+        <button id="btnSlayEnemy" onclick="incrementEnemiesSlain">Slay Enemy</button>        
+    </div>
     <script>
         //create a timer that runs every 10 seconds and increments totalEnemiesSlain by 1
         //var timerAmount = 10000; //so I can set how often this fires
@@ -45,9 +48,14 @@
                 return this.stop().start();
             }
         }
+        
+        //create the initial timer
         var timer = new Timer(function() {
             $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
         }, 10000);
+
+        //immediately stop the timer
+        timer.stop();
 
         // switch interval to 10 seconds
         //timer.reset(10000);
@@ -58,6 +66,10 @@
         // start the timer
         //timer.start();
 
+        function incrementEnemiesSlain(){
+            //increments totalEnemiesSlain by 1
+            $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
+        }
     </script>
 </body>
 </html>
