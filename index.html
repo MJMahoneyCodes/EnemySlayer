@@ -139,12 +139,12 @@
             if(parseInt($("#totalEnemiesSlain").text()) >= 10){
                 $("#btnHireBasicSlayer").removeAttr("disabled");
             }
-            if(parseInt($("#totalEnemiesSlain").text()) >= 100){
-                $("#btnSharpenSword").removeAttr("disabled");
-            }
-            if(parseInt($("#totalEnemiesSlain").text()) >= 100){
-                $("#btnHireAdvancedSlayer").removeAttr("disabled");
-            } else {$("#btnHireAdvancedSlayer").attr("disabled");}
+            if(parseInt($("#totalEnemiesSlain").text()) < 100){
+                $("#btnSharepnSword").prop("disabled", "true");
+            } else{$("#btnSharpenSword").removeAttr("disabled");}
+            if(parseInt($("#totalEnemiesSlain").text()) < 100){
+                $("#btnHireAdvancedSlayer").prop('disabled', true);
+            } else {$("#btnHireAdvancedSlayer").removeAttr("disabled");}
         }
 
         function increaseMonstersSlainPerClick(){
