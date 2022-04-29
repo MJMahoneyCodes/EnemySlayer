@@ -144,7 +144,7 @@
             }
             if(parseInt($("#totalEnemiesSlain").text()) >= 100){
                 $("#btnHireAdvancedSlayer").removeAttr("disabled");
-            }
+            } else {$("#btnHireAdvancedSlayer").attr("disabled");}
         }
 
         function increaseMonstersSlainPerClick(){
