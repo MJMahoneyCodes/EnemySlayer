@@ -14,6 +14,9 @@
     <div>
         <button id="btnSlayEnemy" onclick="incrementEnemiesSlain()">Slay Enemy</button>        
     </div>
+    <div>
+        <button id="btnHireSlayer" onclick="createSlayerTimer()">Hire Slayer</button>
+    </div>
     <script>
         //create a timer that runs every 10 seconds and increments totalEnemiesSlain by 1
         //var timerAmount = 10000; //so I can set how often this fires
@@ -69,6 +72,12 @@
         function incrementEnemiesSlain(){
             //increments totalEnemiesSlain by 1
             $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
+        }
+
+        function createSlayerTimer(){
+            var timer = new Timer(function() {
+            $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
+        }, 10000);
         }
     </script>
 </body>
