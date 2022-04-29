@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enemy Slayer</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .slayerParent { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            grid-gap: 20px; 
+            border: 1px solid black; 
+            width: 50%; 
+        } 
+        .slayerChild { 
+            margin: 10px; 
+            border: 1px solid red; 
+        }
+
+    </style>
 </head>
 <body>
     <div>
@@ -14,12 +28,18 @@
     <div>
         <button id="btnSlayEnemy" onclick="manualSlayEnemy()">Slay Enemy</button>        
     </div>
-    <div>
-        <button id="btnHireSlayer" onclick="createSlayerTimer()" disabled="true">Hire Slayer</button>
-        <div>
-            <ul id="timerList">
-
-            </ul>
+    <div class="slayerParent">
+        <div class="slayerChild">
+            <button id="btnHireBasicSlayer" onclick="createBasicSlayerTimer()" disabled="true">Hire Basic Slayer</button>
+            <div>
+                <ul id="basicTimerList"></ul>
+            </div>
+        </div>
+        <div class="slayerChild">
+            <button id="btnHireAdvancedSlayer" onclick="createAdvancedSlayerTimer()" disabled="true">Hire Advanced Slayer</button>
+            <div>
+                <ul id="AdvancedTimerList"></ul>
+            </div>
         </div>
     </div>
     <div>
@@ -83,9 +103,9 @@
             unlockChecker();
         }
 
-        var numberOfTimers = 0;
-        function createSlayerTimer(){
-            $("#btnHireSlayer").attr("disabled", "true");
+        var numberOfBasicTimers = 0;
+        function createBasicSlayerTimer(){
+            $("#btnHireBasicSlayer").attr("disabled", "true");
             
             $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) - 10);
 
@@ -94,9 +114,25 @@
             unlockChecker();
             }, 10000);
             
-            numberOfTimers++;
+            numberOfBasicTimers++;
 
-            $("#timerList").append('<li>Slayer ' + numberOfTimers + '</li>');
+            $("#basicTimerList").append('<li>Basic Slayer ' + numberOfBasicTimers + '</li>');
+        }
+
+        var numberOfAdvancedTimers = 0;
+        function createAdvancedSlayerTimer(){
+            $("#btnHireAdvancedSlayer").attr("disabled", "true");
+            
+            $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) - 100);
+
+            var timer = new Timer(function() {
+            $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 5);
+            unlockChecker();
+            }, 10000);
+            
+            numberOfAdvancedTimers++;
+
+            $("#advancedTimerList").append('<li>Advanced Slayer ' + numberOfAdvancedTimers + '</li>');
         }
 
         function unlockChecker(){
@@ -105,6 +141,9 @@
             }
             if(parseInt($("#totalEnemiesSlain").text()) >= 100){
                 $("#btnSharpenSword").removeAttr("disabled");
+            }
+            if(parseInt($("#totalEnemiesSlain").text()) >= 100){
+                $("#btnHireAdvancedSlayer").removeAttr("disabled");
             }
         }
 
