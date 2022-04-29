@@ -12,7 +12,7 @@
         <h1>Enemies Slain: <span id="totalEnemiesSlain">0</span></h1>
     </div>
     <div>
-        <button id="btnSlayEnemy" onclick="incrementEnemiesSlain()">Slay Enemy</button>        
+        <button id="btnSlayEnemy" onclick="manualSlayEnemy()">Slay Enemy</button>        
     </div>
     <div>
         <button id="btnHireSlayer" onclick="createSlayerTimer()" disabled="true">Hire Slayer</button>
@@ -21,6 +21,9 @@
 
             </ul>
         </div>
+    </div>
+    <div>
+        <button id="btnSharpenSword" onclick="increaseMonstersSlainPerClick()" disabled="true">Sharpen Sword</button>
     </div>
     <script>
         //create a timer that runs every 10 seconds and increments totalEnemiesSlain by 1
@@ -74,9 +77,9 @@
         // start the timer
         //timer.start();
 
-        function incrementEnemiesSlain(){
-            //increments totalEnemiesSlain by 1
-            $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + 1);
+        var monstersSlainPerClick = 1;
+        function manualSlayEnemy(){
+            $("#totalEnemiesSlain").text(parseInt($("#totalEnemiesSlain").text()) + monstersSlainPerClick);
             unlockChecker();
         }
 
@@ -97,11 +100,19 @@
         }
 
         function unlockChecker(){
-            console.log("unlockChecker has run");
             if(parseInt($("#totalEnemiesSlain").text()) >= 10){
                 $("#btnHireSlayer").removeAttr("disabled");
             }
+            if(parseInt($("#totalEnemiesSlain").text()) >= 100){
+                $("#btnSharpenSword").removeAttr("disabled");
+            }
         }
+
+        function increaseMonstersSlainPerClick(){
+            monstersSlainPerClick++;
+            $("#btnSharpenSword").attr("disabled", "true");
+        }
+        
     </script>
 </body>
 </html>
